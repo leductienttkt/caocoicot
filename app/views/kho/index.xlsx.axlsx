@@ -2,7 +2,8 @@ wb = xlsx_package.workbook
 wb.add_worksheet(name: I18n.l(Time.now.to_date, format: :long).to_s) do |sheet|
   sheet.add_row ["SDT-ITEM", "SDT-BIN", "SDT-SOH-QTY", "ITE-STOCK-UOM"]
   @kho.each do |khu, bins|
-    bins.each do |id, bin|
+    bins.each do |bin_id, bin|
+      id = bin_id.gsub("-", ".")
       bin["ITEM1"].each do |item, qty|
         if item != "xxx"
           sheet.add_row [item, id, qty, "LB", item[0,2]]
