@@ -4,10 +4,14 @@ wb.add_worksheet(name: I18n.l(Time.now.to_date, format: :long).to_s) do |sheet|
   @kho.each do |khu, bins|
     bins.each do |id, bin|
       bin["ITEM1"].each do |item, qty|
-        sheet.add_row [item, id, qty, "LB", item[0,2]]
+        if item != "xxx"
+          sheet.add_row [item, id, qty, "LB", item[0,2]]
+        end
       end if  bin["ITEM1"].present?
       bin["ITEM2"].each do |item, qty|
-        sheet.add_row [item, id, qty, "LB", item[0,2]]
+        if item != "xxx"
+          sheet.add_row [item, id, qty, "LB", item[0,2]]
+        end
       end if  bin["ITEM2"].present?
     end
   end
