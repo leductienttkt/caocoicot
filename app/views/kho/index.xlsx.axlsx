@@ -1,0 +1,22 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: I18n.l(Time.now.to_date, format: :long).to_s) do |sheet|
+  sheet.add_row ["SDT-ITEM", "SDT-BIN", "SDT-SOH-QTY", "ITE-STOCK-UOM"]
+  @kho.each do |khu, bins|
+    bins.each do |id, bin|
+      bin["ITEM1"].each do |item, qty|
+        sheet.add_row [item, id, qty, "LB", item[0,2]]
+      end if  bin["ITEM1"].present?
+      bin["ITEM2"].each do |item, qty|
+        sheet.add_row [item, id, qty, "LB", item[0,2]]
+      end if  bin["ITEM2"].present?
+    end
+  end
+
+  first_row = sheet.rows.first
+  last_row  = sheet.rows.last
+
+  tpos = sheet.rows.map {|row| row.cells[0].value.to_i}.max + 1
+  sheet.rows.sort_by! do |row|
+    (row == first_row ? -1 : (row == last_row ? tpos : row.cells[0].value.to_i))
+  end
+end
