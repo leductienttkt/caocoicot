@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem "firebase"
 gem "axlsx_rails"
+gem 'public_activity'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
