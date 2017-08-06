@@ -17,6 +17,5 @@
 //= require bootstrap-sprockets
 
 $(document).ready(function() {
-  alert("a")
   $(".message-alert" ).fadeOut(4000);
 })
