@@ -1,0 +1,21 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: I18n.l(Time.now.to_date, format: :long).to_s) do |sheet|
+  sheet.add_row ["_f4:IAC-COMPANY*", "_f7:IAC-LOCATION*", "_f9:IAC-DOCUMENT*", "_f11,REQ-LOC",
+  	"D:1:5: f15:LINE-FC", "D:1:5: f16:ICT-LINE-NBR", "D:1:5: f17:ICT-ITEM", "D:1:5: f18:ICT-QUANTITY",
+  	"Item UOM", "D:1:5: f21:ICT-BIN", nil, "Results from IC21.1",
+  	"Line", "So lo hang", "DATE", "USER", "TIME"]
+  sheet.add_row []
+  @xuatkho.each do |date, nhaps|
+    nhaps.each do |user, los|
+      los.each do |lo, lines|
+        lines.each do |line, hangs|
+          hangs.each do |mahang, bins|
+            bins.each do |bin|
+              sheet.add_row ["3848", nil, nil, nil, nil, nil, mahang, bin.last["KL"], nil, bin.first, nil, nil, line, lo, date, user, bin.last["TIME"]]
+            end
+          end
+        end
+      end
+    end
+  end
+end

@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :kho
   resources :nhap
+  resources :xuat
   resources :nhap_dulieu
 end
