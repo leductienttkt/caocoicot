@@ -1,0 +1,13 @@
+<div>
+  <%= link_to 'Download KHO as .xlsx', kho_index_path(format: :xlsx), class: "btn btn-warning" %>
+</div>
+
+<div>
+  <%= link_to 'Download Nhap Kho as .xlsx', nhap_index_path(format: :xlsx), class: "btn btn-warning" %>
+</div>
+
+<h4>Import from Excel file</h4>
+<%= form_tag nhap_dulieu_index_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import", class: "btn btn-success" %>
+<% end %>

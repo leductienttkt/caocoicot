@@ -15,6 +15,5 @@ class KhoController < ApplicationController
         headers["Content-Type"] ||= Settings.xlsx
       end
     end
-
   end
 end

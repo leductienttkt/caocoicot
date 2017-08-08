@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  
-  root "kho#index"
 
+  root "home#index"
+
+  resources :kho
   resources :nhap
   resources :nhap_dulieu
 end
