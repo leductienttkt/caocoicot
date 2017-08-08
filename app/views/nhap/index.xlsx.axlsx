@@ -3,14 +3,17 @@ wb.add_worksheet(name: I18n.l(Time.now.to_date, format: :long).to_s) do |sheet|
   sheet.add_row ["_f22,POR-COMPANY", "_f26,POR-PO-NUMBER", "_f27,POR-PO-RELEASE", "_f28,POR-PO-CODE",
   	"_f42:0,LINE-FC1", "_f43:0,PRL-PO-LINE-NBR1", "_f44:0,ITEM-DETAIL1", "_f47:0,PRL-ENTER-REC-QTY1",
   	"_f48:0,PRL-ENT-REC-UOM1", "_f51:0,PRL-LOCATION1", "_f52:0,PRL-ICL-NAME1", "_f54:0,PRL-BIN1",
-  	"Results from PO30.1", "Results from PO30.1"]
-    sheet.add_row []
-    sheet.add_row []
-  @nhapkho.each do |manhap, hangs|
-    hangs.each do |mahang, bins|
-      ma = manhap[0,4]
-      bins.each do |bin, qty|
-        sheet.add_row [ma, manhap, nil, nil, nil, nil, mahang, qty, nil, nil, nil, bin,nil, nil]
+  	"Results from PO30.1", "Results from PO30.1", nil, "DATE", "USER", "TIME"]
+  sheet.add_row []
+  @nhapkho.each do |date, nhaps|
+    nhaps.each do |user, manhaps|
+      manhaps.each do |manhap, hangs|
+        hangs.each do |mahang, bins|
+          ma = manhap[0,4]
+          bins.each do |bin|
+            sheet.add_row [ma, manhap, nil, nil, nil, nil, mahang, bin.last["KL"], nil, nil, nil, bin.first, nil, nil, nil, date, user, bin.last["TIME"]]
+          end
+        end
       end
     end
   end
