@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :nhap
   resources :xuat
   resources :nhap_dulieu
+  resources :gomhang
+  resources :trahang
 end

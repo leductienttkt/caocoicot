@@ -1,0 +1,16 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: I18n.l(Time.now.to_date, format: :long).to_s) do |sheet|
+  sheet.add_row ["Ngay thang", "ID", "Ma Hang", "Vi tr Bin cu", "Vi tri Bin moi", "Khoi Luong", "Thoi gian"]
+  sheet.add_row []
+  @gomhang.each do |date, ids|
+    ids.each do |id, hangs|
+      hangs.each do |hang, old_bins|
+        old_bins.each do |old_bin, new_bins|
+          new_bins.each do |new_bin, data|
+            sheet.add_row [date, id, hang, old_bin.gsub("-", "."), new_bin.gsub("-", "."), data["KL"], data["TIME"]]
+          end
+        end
+      end
+    end
+  end
+end

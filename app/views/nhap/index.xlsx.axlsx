@@ -11,7 +11,7 @@ wb.add_worksheet(name: I18n.l(Time.now.to_date, format: :long).to_s) do |sheet|
         hangs.each do |mahang, bins|
           ma = manhap[0,4]
           bins.each do |bin|
-            sheet.add_row [ma, manhap, nil, nil, nil, nil, mahang, bin.last["KL"], nil, nil, nil, bin.first, nil, nil, nil, date, user, bin.last["TIME"]]
+            sheet.add_row [ma, manhap, nil, nil, nil, nil, mahang, bin.last["KL"], nil, nil, nil, bin.first.gsub("-", "."), nil, nil, nil, date, user, bin.last["TIME"]]
           end
         end
       end
